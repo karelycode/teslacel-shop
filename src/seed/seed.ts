@@ -1,4 +1,5 @@
 import bycriptjs from 'bcryptjs';
+import { BrandCategory } from '../interfaces/product.interface';
 
 interface SeedProduct {
   description: string;
@@ -8,7 +9,7 @@ interface SeedProduct {
   price: number;
   slug: string;
   title: string;
-  brand: validBrands;
+  brand: BrandCategory;
 }
 
 interface SeedUser {
@@ -23,16 +24,6 @@ interface SeedData {
   brands: string[];
   products: SeedProduct[];
 }
-
-type validBrands =
-  | 'Xiaomi'
-  | 'Samsung'
-  | 'Apple'
-  | 'Oppo'
-  | 'Honor'
-  | 'Motorola'
-  | 'Poco'
-  | 'Realme';
 
 export const initialData: SeedData = {
   users: [

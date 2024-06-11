@@ -1,16 +1,14 @@
 export interface Product {
   id: string;
   description: string;
+  characteristics: string;
   images: string[];
   inStock: number;
   price: number;
-  sizes: Size[];
   slug: string;
-  tags: string[];
   title: string;
-  // type: Type;
-  //todo: type
-  gender: Category;
+  brand: BrandCategory;
+  gender: BrandCategory;
 }
 
 export interface CartProduct {
@@ -19,7 +17,6 @@ export interface CartProduct {
   title: string;
   price: number;
   quantity: number;
-  size: Size;
   image: string;
 }
 
@@ -28,6 +25,12 @@ export interface ProductImage {
   url: string;
 }
 
-export type Category = 'men' | 'women' | 'kid' | 'unisex';
-export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
-export type Type = 'shirts' | 'pants' | 'hoodies' | 'hats';
+export type BrandCategory =
+  | 'Xiaomi'
+  | 'Samsung'
+  | 'Apple'
+  | 'Oppo'
+  | 'Honor'
+  | 'Motorola'
+  | 'Poco'
+  | 'Realme';
