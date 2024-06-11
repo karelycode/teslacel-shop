@@ -8,7 +8,6 @@ export interface Product {
   slug: string;
   title: string;
   brand: BrandCategory;
-  gender: BrandCategory;
 }
 
 export interface CartProduct {

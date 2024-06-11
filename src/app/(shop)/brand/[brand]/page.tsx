@@ -27,26 +27,11 @@ export default async function GenderByPage({ params, searchParams }: Props) {
     redirect(`/brand/${brand}`);
   }
 
-  //Arreglar las etiquetas
-  const labels: Record<string, string> = {
-    men: 'para Hombres',
-    women: 'para Mujeres',
-    kid: 'para Niños',
-    unisex: 'para todos',
-  };
-
-  const subtitle: Record<string, string> = {
-    men: 'Todos los productos para él',
-    women: 'Todos los productos para ella',
-    kid: 'Todos los productos para más pequeños',
-    unisex: 'Todos los productos para todos',
-  };
-
   return (
     <>
       <Title
-        title={`Articulos ${labels[brand]}`}
-        subtitle={subtitle[brand]}
+        title={`Artículos ${brand}`}
+        subtitle={`Todos los productos de la marca ${brand}`}
         className="mb-2"
       />
       <ProductGrid products={products} />

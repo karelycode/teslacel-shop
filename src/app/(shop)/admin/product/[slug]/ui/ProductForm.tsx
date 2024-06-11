@@ -1,8 +1,11 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { Product, ProductImage as ProductWithImage } from '@/interfaces';
-import clsx from 'clsx';
+import {
+  BrandCategory,
+  Product,
+  ProductImage as ProductWithImage,
+} from '@/interfaces';
 import { createUpdateProduct, deleteProductImage } from '@/actions';
 import { useRouter } from 'next/navigation';
 import { ProductImage } from '@/components';
@@ -22,15 +25,7 @@ interface FormInputs {
   characteristics: string;
   price: number;
   inStock: number;
-  brand:
-    | 'Xiaomi'
-    | 'Samsung'
-    | 'Apple'
-    | 'Oppo'
-    | 'Honor'
-    | 'Motorola'
-    | 'Poco'
-    | 'Realme';
+  brand: BrandCategory;
   categoryBrandId: string;
   images?: FileList;
 }
