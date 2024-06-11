@@ -17,6 +17,7 @@ export interface CartProduct {
   price: number;
   quantity: number;
   image: string;
+  brand: BrandCategory;
 }
 
 export interface ProductImage {

@@ -54,9 +54,7 @@ export const useCartStore = create<State>()(
         const { cart } = get();
 
         // 1. Check if the product is already in the cart with the size selected
-        const productInCart = cart.some(
-          (item) => item.id === product.id && item.size === product.size
-        );
+        const productInCart = cart.some((item) => item.id === product.id);
 
         if (!productInCart) {
           set({ cart: [...cart, product] });
@@ -65,7 +63,7 @@ export const useCartStore = create<State>()(
 
         // 2. Update the quantity if the product is already in the cart
         const updatedCartProducts = cart.map((item) => {
-          if (item.id === product.id && item.size === product.size) {
+          if (item.id === product.id) {
             return { ...item, quantity: item.quantity + product.quantity };
           }
           return item;
@@ -77,7 +75,7 @@ export const useCartStore = create<State>()(
         const { cart } = get();
 
         const updatedCartProducts = cart.map((item) => {
-          if (item.id === product.id && item.size === product.size) {
+          if (item.id === product.id) {
             return { ...item, quantity };
           }
           return item;
@@ -89,7 +87,7 @@ export const useCartStore = create<State>()(
         const { cart } = get();
 
         const updatedCartProducts = cart.filter(
-          (item) => item.id !== product.id || item.size !== product.size
+          (item) => item.id !== product.id
         );
 
         set({ cart: updatedCartProducts });

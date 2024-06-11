@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { QuantitySelector } from '@/components';
-import { CartProduct, Product, Brands } from '@/interfaces';
+import { CartProduct, Product } from '@/interfaces';
 import { useCartStore } from '@/store';
 
 interface Props {
@@ -13,16 +13,10 @@ interface Props {
 export const AddToCart = ({ product }: Props) => {
   const addProductToCart = useCartStore((state) => state.addProductToCart);
 
-  const [brand, setBrand] = useState<Brands | undefined>();
   const [quantity, setQuantity] = useState<number>(1);
   const [posted, setPosted] = useState(false);
 
   const addToCart = () => {
-    if (!brand) {
-      setPosted(true);
-      return;
-    }
-
     const cartProduct: CartProduct = {
       id: product.id,
       slug: product.slug,
@@ -36,7 +30,6 @@ export const AddToCart = ({ product }: Props) => {
 
     setPosted(false);
     setQuantity(1);
-    setBrand(undefined);
   };
 
   return (
