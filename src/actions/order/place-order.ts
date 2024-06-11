@@ -1,13 +1,12 @@
 'use server';
 
 import { auth } from '@/auth.config';
-import { Address, Size } from '@/interfaces';
+import { Address } from '@/interfaces';
 import prisma from '@/lib/prisma';
 
 interface ProductToOrder {
   productId: string;
   quantity: number;
-  size: Size;
 }
 
 export const placeOrder = async (
@@ -105,7 +104,6 @@ export const placeOrder = async (
               data: productIds.map((item) => ({
                 productId: item.productId,
                 quantity: item.quantity,
-                size: item.size,
                 price:
                   products.find((product) => product.id === item.productId)
                     ?.price ?? 0,

@@ -6,7 +6,7 @@ import { Brands } from '@prisma/client';
 interface PaginationOptions {
   page?: number;
   take?: number;
-  brand: string;
+  brand?: string;
 }
 
 export const getPaginatedProductsWithImages = async ({

@@ -27,6 +27,7 @@ export default async function GenderByPage({ params, searchParams }: Props) {
     redirect(`/brand/${brand}`);
   }
 
+  //Arreglar las etiquetas
   const labels: Record<string, string> = {
     men: 'para Hombres',
     women: 'para Mujeres',

@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { Gender, Product, Size } from '@prisma/client';
+import { Brands, Product } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
@@ -11,6 +11,7 @@ const ProductSchema = z.object({
   id: z.string().uuid().optional().nullable(),
   title: z.string().min(3).max(255),
   slug: z.string().min(3).max(255),
+  characteristics: z.string(),
   description: z.string(),
   price: z.coerce
     .number()
@@ -20,10 +21,8 @@ const ProductSchema = z.object({
     .number()
     .min(0)
     .transform((val) => Number(val.toFixed(0))),
-  sizes: z.coerce.string().transform((val) => val.split(',')),
-  tags: z.string(),
-  gender: z.nativeEnum(Gender),
-  categoryId: z.string().uuid(),
+  brand: z.nativeEnum(Brands),
+  categoryBrandId: z.string().uuid(),
 });
 
 export const createUpdateProduct = async (formData: FormData) => {
@@ -44,10 +43,6 @@ export const createUpdateProduct = async (formData: FormData) => {
     const prismaTx = await prisma.$transaction(async (tx) => {
       let product: Product;
 
-      const tagsArray = rest.tags
-        .split(',')
-        .map((tag) => tag.trim().toLocaleLowerCase());
-
       if (id) {
         //update
         product = await tx.product.update({
@@ -56,12 +51,6 @@ export const createUpdateProduct = async (formData: FormData) => {
           },
           data: {
             ...rest,
-            sizes: {
-              set: rest.sizes as Size[],
-            },
-            tags: {
-              set: tagsArray,
-            },
           },
         });
       } else {
@@ -69,12 +58,6 @@ export const createUpdateProduct = async (formData: FormData) => {
         product = await tx.product.create({
           data: {
             ...rest,
-            sizes: {
-              set: rest.sizes as Size[],
-            },
-            tags: {
-              set: tagsArray,
-            },
           },
         });
       }

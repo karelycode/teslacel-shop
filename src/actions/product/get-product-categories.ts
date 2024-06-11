@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma';
 
 export const getProductCategories = async () => {
   try {
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.categoryBrand.findMany({
       orderBy: {
         name: 'asc',
       },

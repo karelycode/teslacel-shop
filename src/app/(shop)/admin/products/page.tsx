@@ -56,19 +56,7 @@ export default async function ProductsPage({ searchParams }: Props) {
                 scope="col"
                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
               >
-                Género
-              </th>
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
                 Inventario
-              </th>
-              <th
-                scope="col"
-                className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-              >
-                Sizes
               </th>
             </tr>
           </thead>
@@ -101,14 +89,8 @@ export default async function ProductsPage({ searchParams }: Props) {
                 <td className="items-center text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                   {currencyFormat(product.price)}
                 </td>
-                <td className="items-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {product.gender}
-                </td>
                 <td className="items-center text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                   {product.inStock}
-                </td>
-                <td className="items-center text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                  {product.sizes.join(', ')}
                 </td>
               </tr>
             ))}

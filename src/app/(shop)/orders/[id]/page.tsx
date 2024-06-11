@@ -35,6 +35,7 @@ export default async function OrdersByIdPage({ params }: Props) {
             <OrderStatus isPaid={order!.isPaid} />
 
             {/* Items */}
+
             {order!.OrderItem.map((item) => (
               <div
                 key={item.product.slug + '-' + item.size}

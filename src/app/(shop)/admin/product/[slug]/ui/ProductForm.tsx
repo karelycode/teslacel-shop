@@ -15,18 +15,23 @@ interface Props {
   }[];
 }
 
-const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-
 interface FormInputs {
   title: string;
   slug: string;
   description: string;
+  characteristics: string;
   price: number;
   inStock: number;
-  sizes: string[];
-  tags: string;
-  gender: 'men' | 'women' | 'kid' | 'unisex';
-  categoryId: string;
+  brand:
+    | 'Xiaomi'
+    | 'Samsung'
+    | 'Apple'
+    | 'Oppo'
+    | 'Honor'
+    | 'Motorola'
+    | 'Poco'
+    | 'Realme';
+  categoryBrandId: string;
   images?: FileList;
 }
 
@@ -43,21 +48,9 @@ export const ProductForm = ({ product, categories }: Props) => {
   } = useForm<FormInputs>({
     defaultValues: {
       ...product,
-      tags: product.tags?.join(', '),
-      sizes: product.sizes ?? [],
       images: undefined,
     },
   });
-
-  watch('sizes');
-
-  const onSizeChanged = (size: string) => {
-    const sizes = new Set(getValues('sizes'));
-
-    sizes.has(size) ? sizes.delete(size) : sizes.add(size);
-
-    setValue('sizes', Array.from(sizes));
-  };
 
   const onSubmit = async (data: FormInputs) => {
     const formData = new FormData();
@@ -70,12 +63,11 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append('title', productToSave.title);
     formData.append('slug', productToSave.slug);
     formData.append('description', productToSave.description);
+    formData.append('characteristics', productToSave.characteristics);
     formData.append('price', productToSave.price.toString());
     formData.append('inStock', productToSave.inStock.toString());
-    formData.append('sizes', productToSave.sizes.toString());
-    formData.append('tags', productToSave.tags);
-    formData.append('gender', productToSave.gender);
-    formData.append('categoryId', productToSave.categoryId);
+    formData.append('brand', productToSave.brand);
+    formData.append('categoryBrandId', productToSave.categoryBrandId);
 
     if (images) {
       for (let i = 0; i < images.length; i++) {
@@ -137,25 +129,29 @@ export const ProductForm = ({ product, categories }: Props) => {
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Tags</span>
+          <span>Características</span>
           <input
             type="text"
             className="p-2 border rounded-md bg-gray-200"
-            {...register('tags', { required: true })}
+            {...register('characteristics', { required: true })}
           />
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Género</span>
+          <span>Marca</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register('gender', { required: true })}
+            {...register('brand', { required: true })}
           >
             <option value="">[Seleccione]</option>
-            <option value="men">Men</option>
-            <option value="women">Women</option>
-            <option value="kid">Kid</option>
-            <option value="unisex">Unisex</option>
+            <option value="Xiaomi">Xiaomi</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Apple">Apple</option>
+            <option value="Oppo">Oppo</option>
+            <option value="Honor">Honor</option>
+            <option value="Motorola">Motorola</option>
+            <option value="Poco">Poco</option>
+            <option value="Realme">Realme</option>
           </select>
         </div>
 
@@ -163,7 +159,7 @@ export const ProductForm = ({ product, categories }: Props) => {
           <span>Categoría</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register('categoryId', { required: true })}
+            {...register('categoryBrandId', { required: true })}
           >
             <option value="">[Seleccione]</option>
             {categories.map((category) => (
@@ -191,25 +187,6 @@ export const ProductForm = ({ product, categories }: Props) => {
         </div>
         {/* As checkboxes */}
         <div className="flex flex-col">
-          <span>Tallas</span>
-          <div className="flex flex-wrap">
-            {sizes.map((size) => (
-              // bg-blue-500 text-white <--- si está seleccionado
-              <div
-                key={size}
-                onClick={() => onSizeChanged(size)}
-                className={clsx(
-                  'flex p-2 cursor-pointer transition-all items-center justify-center w-10 h-10 mr-2 border rounded-md',
-                  {
-                    'bg-blue-500 text-white': getValues('sizes').includes(size),
-                  }
-                )}
-              >
-                <span>{size}</span>
-              </div>
-            ))}
-          </div>
-
           <div className="flex flex-col mb-2">
             <span>Fotos</span>
             <input
