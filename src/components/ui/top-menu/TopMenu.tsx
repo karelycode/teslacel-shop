@@ -68,12 +68,6 @@ export const TopMenu = () => {
         </Link>
         <Link
           className="m-2 p-2 text-black hover:text-pink-600"
-          href={'/brand/Poco'}
-        >
-          Poco
-        </Link>
-        <Link
-          className="m-2 p-2 text-black hover:text-pink-600"
           href={'/brand/Realme'}
         >
           Realme

@@ -1,6 +1,7 @@
 import { auth } from '@/auth.config';
 import { Title } from '@/components';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -16,7 +17,7 @@ export default async function ProfilePage() {
       <div className="bg-white shadow rounded-lg p-6">
         <div className="flex items-center space-x-4 mb-6">
           {session.user.image ? (
-            <img src={session.user.image} alt={session.user.name} className="w-16 h-16 rounded-full" />
+            <Image src={session.user.image} alt={session.user.name} width={64}height={64} className="rounded-full" />
           ) : (
             <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
               <span className="text-xl text-gray-600">{session.user.name.charAt(0)}</span>
