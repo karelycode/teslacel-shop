@@ -29,8 +29,9 @@ export const ProductGridItem = ({ product }: Props) => {
           src={localsrc}
           alt={product.title}
           className="object-cover rounded transition-all w-[148px] h-[148px] md:w-[500px] md:h-[500px]"
-          width={300}
-          height={300}
+          width={1920}
+          height={1920}
+          priority={false}
           onMouseEnter={() => setDisplayImage(product.images[1])}
           onMouseLeave={() => setDisplayImage(product.images[0])}
         />

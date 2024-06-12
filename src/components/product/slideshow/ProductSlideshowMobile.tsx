@@ -31,8 +31,8 @@ export const ProductSlideshowMobile = ({ images, title, className }: Props) => {
           <SwiperSlide key={image}>
             <ProductImage
               src={image}
-              width={600}
-              height={500}
+              width={1920}
+              height={1920}
               alt={title}
               className="object-fill"
             />

@@ -46,8 +46,8 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
           <SwiperSlide key={image}>
             <ProductImage
               src={image}
-              width={1024}
-              height={800}
+              width={1920}
+              height={1920}
               alt={title}
               quality={100}
               className="rounded-lg object-fill pb-3"
@@ -68,8 +68,8 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
           <SwiperSlide key={image}>
             <ProductImage
               src={image}
-              width={300}
-              height={300}
+              width={1920}
+              height={1920}
               alt={title}
               className="rounded-lg object-fill"
             />

@@ -1,12 +1,35 @@
 'use server';
 
-import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import prisma from '@/lib/prisma';
+import { v2 as cloudinary } from 'cloudinary';
+cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
 export const deleteProduct = async (id: string) => {
-  //TODO IMPLEMENT DELETE PRODUCT FROM CLODINARY WHEN DELETING PRODUCT
+  const imageUrls = await prisma.productImage.findMany({
+    where: {
+      productId: id,
+    },
+    select: {
+      url: true,
+    },
+  });
+
+  const imageNames = imageUrls.map((image) => {
+    return image.url.split('/').pop()?.split('.')[0] ?? '';
+  });
 
   try {
+    try {
+      imageNames.forEach(async (imageName) => {
+        await cloudinary.uploader.destroy(imageName);
+      });
+    } catch (error) {
+      return {
+        ok: false,
+        message: 'Error deleting product images from Cloudinary',
+      };
+    }
     try {
       await prisma.productImage.deleteMany({
         where: {
@@ -15,6 +38,7 @@ export const deleteProduct = async (id: string) => {
       });
     } catch (error) {
       console.error(error);
+
       return {
         ok: false,
         message: 'Error deleting product images',

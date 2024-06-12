@@ -6,13 +6,13 @@ import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
 export const deleteProductImage = async (imageId: number, imageUrl: string) => {
-  //TODO DELETE THIS VALIDATION WHEN LOCAL IMAGES ARE IMPLEMENTED
-  if (!imageUrl.startsWith('http')) {
-    return {
-      ok: false,
-      data: 'Local image cannot be deleted',
-    };
-  }
+  // VALIDATION WHEN LOCAL IMAGES ARE IMPLEMENTED
+  // if (!imageUrl.startsWith('http')) {
+  //   return {
+  //     ok: false,
+  //     data: 'Local image cannot be deleted',
+  //   };
+  // }
 
   const imageName = imageUrl.split('/').pop()?.split('.')[0] ?? '';
 

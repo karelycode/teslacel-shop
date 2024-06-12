@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { titleFont } from '@/config/fonts';
 import { useCartStore, useUIStore } from '@/store';
-import { IoSearchOutline, IoCartOutline } from 'react-icons/io5';
+import { IoCartOutline } from 'react-icons/io5';
 
 export const TopMenu = () => {
   const openMenu = useUIStore((state) => state.openSideMenu);
@@ -29,7 +29,7 @@ export const TopMenu = () => {
       </div>
 
       {/* Center Menu */}
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <Link
           className="m-2 p-2 text-black hover:text-pink-600"
           href={'/brand/Xiaomi'}
@@ -91,11 +91,11 @@ export const TopMenu = () => {
         >
           <div className="relative">
             {loaded && totalItemsInCart > 0 && (
-              <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white">
+              <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-pink-600 text-white">
                 {totalItemsInCart}
               </span>
             )}
-            <IoCartOutline className="w-5 h-5" />
+            <IoCartOutline className="w-5 h-5 text-black hover:text-pink-600" />
           </div>
         </Link>
         <button
