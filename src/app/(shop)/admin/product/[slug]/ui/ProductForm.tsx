@@ -6,7 +6,11 @@ import {
   Product,
   ProductImage as ProductWithImage,
 } from '@/interfaces';
-import { createUpdateProduct, deleteProductImage } from '@/actions';
+import {
+  createUpdateProduct,
+  deleteProduct,
+  deleteProductImage,
+} from '@/actions';
 import { useRouter } from 'next/navigation';
 import { ProductImage } from '@/components';
 
@@ -37,9 +41,6 @@ export const ProductForm = ({ product, categories }: Props) => {
     handleSubmit,
     register,
     formState: { isValid },
-    getValues,
-    setValue,
-    watch,
   } = useForm<FormInputs>({
     defaultValues: {
       ...product,
@@ -78,6 +79,19 @@ export const ProductForm = ({ product, categories }: Props) => {
     }
 
     router.replace(`/admin/product/${updatedProduct?.slug}`);
+  };
+
+  const onDelete = async () => {
+    if (!product.id) return;
+
+    const { ok } = await deleteProduct(product.id);
+
+    if (!ok) {
+      alert('No se pudo eliminar el producto');
+      return;
+    }
+
+    router.replace('/admin/products');
   };
 
   return (
@@ -165,8 +179,18 @@ export const ProductForm = ({ product, categories }: Props) => {
           </select>
         </div>
 
-        <button type="submit" className="btn-primary w-full">
-          Guardar
+        {/* Create or update product button */}
+        <button type="submit" className="btn-primary w-full mt-4">
+          Guardar Producto
+        </button>
+
+        {/* Delete product button */}
+        <button
+          type="button"
+          onClick={onDelete}
+          className="btn-danger w-full mt-3 rounded"
+        >
+          Eliminar Producto
         </button>
       </div>
 

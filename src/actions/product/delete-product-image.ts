@@ -6,6 +6,7 @@ import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
 export const deleteProductImage = async (imageId: number, imageUrl: string) => {
+  //TODO DELETE THIS VALIDATION WHEN LOCAL IMAGES ARE IMPLEMENTED
   if (!imageUrl.startsWith('http')) {
     return {
       ok: false,
