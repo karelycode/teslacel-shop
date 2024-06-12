@@ -41,16 +41,7 @@ export const initialData: SeedData = {
     },
   ],
 
-  brands: [
-    'Xiaomi',
-    'Samsung',
-    'Apple',
-    'Oppo',
-    'Honor',
-    'Motorola',
-    'Poco',
-    'Realme',
-  ],
+  brands: ['Xiaomi', 'Samsung', 'Apple', 'Honor', 'Motorola', 'Realme'],
 
   products: [
     {

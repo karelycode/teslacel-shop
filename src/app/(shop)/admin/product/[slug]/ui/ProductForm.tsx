@@ -156,10 +156,8 @@ export const ProductForm = ({ product, categories }: Props) => {
             <option value="Xiaomi">Xiaomi</option>
             <option value="Samsung">Samsung</option>
             <option value="Apple">Apple</option>
-            <option value="Oppo">Oppo</option>
             <option value="Honor">Honor</option>
             <option value="Motorola">Motorola</option>
-            <option value="Poco">Poco</option>
             <option value="Realme">Realme</option>
           </select>
         </div>

@@ -22,10 +22,8 @@ enum Brands {
   Xiaomi
   Samsung
   Apple
-  Oppo
   Honor
   Motorola
-  Poco
   Realme
 }
 

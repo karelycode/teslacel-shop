@@ -29,8 +29,6 @@ export type BrandCategory =
   | 'Xiaomi'
   | 'Samsung'
   | 'Apple'
-  | 'Oppo'
   | 'Honor'
   | 'Motorola'
-  | 'Poco'
   | 'Realme';
