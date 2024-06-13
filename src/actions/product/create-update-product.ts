@@ -103,7 +103,7 @@ const uploadImages = async (images: File[]) => {
 
         return cloudinary.uploader
           .upload(`data:image/jpeg;base64,${base64}`, {
-            folder: 'teslo-shop',
+            folder: 'teslacel-shop',
           })
           .then((res) => res.secure_url);
       } catch (error) {
